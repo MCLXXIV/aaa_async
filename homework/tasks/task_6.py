@@ -15,6 +15,7 @@ class BackgroundCoroutinesWatcher:
         self._running_tasks: Set[asyncio.Task] = set()
 
     def schedule_soon(self, coro: Coroutine):
+        pass
         # Здесь необходимо реализовать логику планирования корутины.
         #
         # YOUR CODE GOES HERE
