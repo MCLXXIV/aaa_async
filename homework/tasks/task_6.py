@@ -23,7 +23,7 @@ class BackgroundCoroutinesWatcher:
         self._running_tasks.remove(task)
 
     async def close(self):
-        _, pending = await asyncio.wait(self._running_tasks, timeout=1)
+        _, pending = await asyncio.wait(*self._running_tasks, timeout=1)
         for task in pending:
             task.cancel()
         # Здесь необходимо реализовать отмену корутин, которые ещё не успели завершиться.
