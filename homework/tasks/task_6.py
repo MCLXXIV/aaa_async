@@ -24,6 +24,7 @@ class BackgroundCoroutinesWatcher:
 
     async def close(self):
         for task in self._running_tasks:
+            self._remove_from_running_task(task)
             if not task.done():
                 task.cancel()
         # Здесь необходимо реализовать отмену корутин, которые ещё не успели завершиться.
