@@ -19,6 +19,8 @@ class BackgroundCoroutinesWatcher:
         task = asyncio.create_task(coro)
         self._running_tasks.add(task)
 
+        task.add_done_callback(self._remove_from_running_task)
+
     def _remove_from_running_task(self, task: asyncio.Task) -> None:
         self._running_tasks.remove(task)
 
@@ -26,8 +28,6 @@ class BackgroundCoroutinesWatcher:
         for task in self._running_tasks:
             if not task.done():
                 task.cancel()
-            else:
-                self._remove_from_running_task(task)
 
 
 class FastHandlerWithLongBackgroundTask:
