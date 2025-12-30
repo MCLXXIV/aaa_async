@@ -17,4 +17,4 @@ async def limit_execution_time_many(*coros: Coroutine, max_execution_time: float
     # Функция эквивалентна limit_execution_time, но корутин на вход приходит несколько.
     #
     async with asyncio.timeout(max_execution_time):
-        asyncio.gather(*coros)
+        await asyncio.gather(*coros)
